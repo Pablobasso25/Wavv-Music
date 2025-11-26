@@ -29,7 +29,16 @@ const TrendingSong = () => {
     return () => window.removeEventListener("storage", loadTrendingSong);
   }, []);
 
-  return <div>TrendingSong</div>;
+  return (
+    <Container style={{ width: "60vw", margin: "1rem" }}>
+      <Row
+        className="align-items-center p-4 rounded-4"
+        style={{ backgroundColor: "#000000ff" }}
+      >
+        Trend content here
+      </Row>
+    </Container>
+  );
 };
 
 export default TrendingSong;
