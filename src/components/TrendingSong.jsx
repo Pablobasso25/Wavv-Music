@@ -35,7 +35,26 @@ const TrendingSong = () => {
         className="align-items-center p-4 rounded-4"
         style={{ backgroundColor: "#000000ff" }}
       >
-        Trend content here
+        <Col md={7} className="d-flex flex-column gap-3">
+  <h2 className="display-5">{trendingSong.title}</h2>
+  <h4>{trendingSong.artist}</h4>
+  <div className="d-flex gap-3 mt-4">
+    <Button
+      variant="primary"
+      className="px-4 py-2 rounded-pill"
+      onClick={() => playSong(trendingSong)}
+    >
+      <i className="bx bx-play me-2"></i>
+      Listen Now
+    </Button>
+    <i
+      className="bx bxs-heart text-primary fs-5 border border-white rounded-circle p-2"
+      style={{ cursor: "pointer" }}
+      title="Agregar a favoritos"
+    ></i>
+  </div>
+</Col>
+
       </Row>
     </Container>
   );
