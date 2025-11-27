@@ -1,3 +1,8 @@
+import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import trendImg from "../assets/trend.png";
+import { defaultAlbum } from "../data/dataDefault";
+
 const ArtistasSidebar = ({ onAlbumSelect }) => {
 
     const [artistas, setArtistas] = useState([]);
