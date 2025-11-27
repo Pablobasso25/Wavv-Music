@@ -70,9 +70,22 @@ const TopSongs = ({ album, isPlaylist = false, fromHome = false }) => {
     window.dispatchEvent(new Event("playlistUpdated"));
     alert(`✅ "${track.name}" eliminada de tu playlist.`);
   };
-  
+
     const isInPlaylist = (trackName) => {
     return playlist.some(
       (song) => song.name === trackName && song.album === album.name
     );
   };
+
+    if (!album || !album.tracks || album.tracks.length === 0) {
+    return (
+      <Col xs={12}>
+        <div className="music-list bg-dark text-white rounded p-3 h-100">
+          <h5>⚠️ No hay canciones disponibles</h5>
+          <p className="text-secondary">
+            Seleccioná un artista del sidebar o agregá uno desde el panel de administración.
+          </p>
+        </div>
+      </Col>
+    );
+  }
