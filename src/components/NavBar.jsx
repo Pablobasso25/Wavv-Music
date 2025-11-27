@@ -51,6 +51,55 @@ const NavBar = () => {
             <i></i>
             No se encontraron resultados
           </div>
+
+          <div>
+            <Dropdown>
+              <Dropdown.Toggle>
+                <div>
+                  <div>
+                    <img src="" alt="" />
+                  </div>
+                  <div>
+                    <h6></h6>
+                  </div>
+                </div>
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item>
+                  <i></i>
+                  <span>Cerrar Sesión</span>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <i></i>
+                  <span>Perfil</span>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <i></i>
+                  <span>Configuración</span>
+                </Dropdown.Item>
+
+                <Dropdown.Item>
+                  <i></i>
+                  <span>Premium</span>
+                  <Badge>
+                    PRO
+                  </Badge>
+                </Dropdown.Item>
+
+                <Dropdown.Item>
+                  <i></i>
+                  <span>Panel Admin</span>
+                </Dropdown.Item>
+
+                <Dropdown.Divider />
+                <Dropdown.Item>
+                  <i></i>
+                  <span>Cerrar Sesión</span>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
         </NavBar.Collapse>
       </Container>
     </Navbar>
