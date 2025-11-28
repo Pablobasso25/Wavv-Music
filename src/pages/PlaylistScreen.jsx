@@ -44,6 +44,24 @@ const PlaylistScreen = () => {
       window.removeEventListener("playlistUpdated", loadPlaylist);
     };
   }, []);
+
+   useEffect(() => {
+    setSelectedAlbum(null);
+  }, [location]);
+
+  const handleAlbumSelect = (album) => {
+    setSelectedAlbum(album);
+  };
+
+  const handleBackToPlaylist = () => {
+    setSelectedAlbum(null);
+  };
+
+  // Determinar qué álbum mostrar
+  const displayAlbum = selectedAlbum || playlistAlbum;
+  const isShowingPlaylist = !selectedAlbum;
+
+  
 };
 
 export default PlaylistScreen;
