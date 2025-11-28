@@ -7,3 +7,12 @@ import alvaroImg from "../aboutUs/alvaro.jpg";
 import rominaImg from "../aboutUs/romina.jpg";
 import juanImg from "../aboutUs/juan.png";
 import patricioImg from "../aboutUs/patricio.png";
+
+const colors = {
+    bgPrimary: "#111111",
+    bgSecondary: "#191B1B",
+    bgSoft: "#35393B",
+    bgHover: "#494D4E",
+    textMain: "#F5F5F5",
+    accent: "#FF2E2E",
+};
