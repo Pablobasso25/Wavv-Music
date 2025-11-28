@@ -57,7 +57,7 @@ const PlaylistScreen = () => {
     setSelectedAlbum(null);
   };
 
-  // Determinar qué álbum mostrar
+
   const displayAlbum = selectedAlbum || playlistAlbum;
   const isShowingPlaylist = !selectedAlbum;
 
