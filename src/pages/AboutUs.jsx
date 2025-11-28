@@ -16,3 +16,13 @@ const colors = {
     textMain: "#F5F5F5",
     accent: "#FF2E2E",
 };
+
+<div
+    style={{
+        backgroundColor: colors.bgPrimary,
+        minHeight: "100vh",
+        maxHeight: "100vh",
+        overflow: "hidden",
+        paddingTop: "2rem",
+    }}
+>
