@@ -1,5 +1,6 @@
-import { Container } from "react-bootstrap";
+import { Container, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import trendImg from "../assets/trend.png";
 import { useMusicPlayer } from "../context/MusicPlayerContext";
 
@@ -7,7 +8,7 @@ const TopSongs = ({ album, isPlaylist = false, fromHome = false }) => {
   const { playSong, currentSong, isPlaying } = useMusicPlayer();
   const [playlist, setPlaylist] = useState([]);
 
-    useEffect(() => {
+  useEffect(() => {
     const loadPlaylist = () => {
       const storedPlaylist =
         JSON.parse(localStorage.getItem("userPlaylist")) || [];
@@ -26,7 +27,9 @@ const TopSongs = ({ album, isPlaylist = false, fromHome = false }) => {
     };
   }, []);
 
-    const handleAddToPlaylist = (track) => {
+ 
+
+  const handleAddToPlaylist = (track) => {
     const songData = {
       id: Date.now(),
       title: track.name,
@@ -44,7 +47,7 @@ const TopSongs = ({ album, isPlaylist = false, fromHome = false }) => {
     );
 
     if (exists) {
-      alert("⚠️ Esta canción ya está en tu playlist.");
+      toast.warning("⚠️ Esta canción ya está en tu playlist.");
       return;
     }
 
@@ -53,44 +56,49 @@ const TopSongs = ({ album, isPlaylist = false, fromHome = false }) => {
     localStorage.setItem("userPlaylist", JSON.stringify(updatedPlaylist));
     window.dispatchEvent(new Event("storage"));
     window.dispatchEvent(new Event("playlistUpdated"));
-    alert(`✅ "${track.name}" agregada a tu playlist.`);
+
+    toast.success(`🎵 "${track.name}" agregada a tu playlist.`);
   };
 
-    const handleRemoveFromPlaylist = (track) => {
-    if (!confirm(`¿Estás seguro de eliminar "${track.name}" de tu playlist?`)) {
-      return;
-    }
+
+  const handleRemoveFromPlaylist = (track) => {
+    toast.info(
+      `🗑️ Eliminando "${track.name}"...`,
+      { autoClose: 800 }
+    );
 
     const updatedPlaylist = playlist.filter(
       (song) => !(song.name === track.name && song.album === track.album)
     );
+
     setPlaylist(updatedPlaylist);
     localStorage.setItem("userPlaylist", JSON.stringify(updatedPlaylist));
     window.dispatchEvent(new Event("storage"));
     window.dispatchEvent(new Event("playlistUpdated"));
-    alert(`✅ "${track.name}" eliminada de tu playlist.`);
+
+    toast.success(`❌ "${track.name}" eliminada de tu playlist.`);
   };
 
-    const isInPlaylist = (trackName) => {
+  const isInPlaylist = (trackName) => {
     return playlist.some(
       (song) => song.name === trackName && song.album === album.name
     );
   };
 
-    if (!album || !album.tracks || album.tracks.length === 0) {
+  if (!album || !album.tracks || album.tracks.length === 0) {
     return (
       <Col xs={12}>
         <div className="music-list bg-dark text-white rounded p-3 h-100">
           <h5>⚠️ No hay canciones disponibles</h5>
           <p className="text-secondary">
-            Seleccioná un artista del sidebar o agregá uno desde el panel de administración.
+            Seleccioná un artista del sidebar o agregá uno desde el panel.
           </p>
         </div>
       </Col>
     );
   }
 
-    return (
+  return (
     <Container style={{ width: "60vw" }}>
       <div
         className="music-list p-3 rounded-4"
@@ -109,7 +117,7 @@ const TopSongs = ({ album, isPlaylist = false, fromHome = false }) => {
           {album.tracks.map((track, index) => {
             const isCurrentTrack = currentSong?.name === track.name;
 
-            return (
+              return (
               <div
                 key={index}
                 className="item d-flex align-items-center justify-content-between p-3 rounded-3 mb-2 cursor-pointer"
@@ -124,89 +132,4 @@ const TopSongs = ({ album, isPlaylist = false, fromHome = false }) => {
                     genre: "Music",
                     name: track.name,
                   };
-                  playSong(songData);
-                }}
-              >
-                <div className="d-flex align-items-center gap-3">
-                  <span className="fw-bold" style={{ minWidth: "30px" }}>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-
-                  <img
-                    src={album.image}
-                    className="rounded me-2 me-md-3"
-                    width="40"
-                    height="40"
-                    alt={track.name}
-                  />
-
-                  <div className="details">
-                    <h6
-                      className="mb-0 small"
-                      style={{ color: isCurrentTrack ? "#0d6efd" : "white" }}
-                    >
-                      {track.name}
-                    </h6>
-                  </div>
-                </div>
-
-                <div className="actions d-flex align-items-center gap-3">
-                  {track.preview_url && (
-                    <i
-                      className={`bx ${
-                        isCurrentTrack && isPlaying ? "bx-pause" : "bx-play"
-                      } cursor-pointer fs-2`}
-                      title={
-                        isCurrentTrack && isPlaying ? "Pausar" : "Reproducir"
-                      }
-                    ></i>
-                  )}
-
-                  {isPlaylist ? (
-                    <i
-                      className="bx bxs-trash text-danger fs-4"
-                      title="Eliminar de playlist"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleRemoveFromPlaylist(track);
-                      }}
-                    ></i>
-                  ) : (
-                    <i
-                      className={`bx ${
-                        isInPlaylist(track.name)
-                          ? "bxs-check-circle text-success"
-                          : "bxs-plus-square text-secondary"
-                      } fs-4`}
-                      title={
-                        isInPlaylist(track.name)
-                          ? "Ya está en tu playlist"
-                          : "Agregar a playlist"
-                      }
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        !isInPlaylist(track.name) && handleAddToPlaylist(track);
-                      }}
-                    ></i>
-                  )}
-
-                  <span>
-                    {track.duration_ms
-                      ? Math.floor(track.duration_ms / 60000) +
-                        ":" +
-                        String(
-                          Math.floor((track.duration_ms / 1000) % 60)
-                        ).padStart(2, "0")
-                      : "0:00"}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </Container>
-  );
-};
-
-export default TopSongs;
+                 
