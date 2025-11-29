@@ -1,71 +1,71 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
-import TeamMember from "./TeamMember";
-import logo from "../logo.png";
-import pabloImg from "../aboutUs/pablo.jpg";
-import alvaroImg from "../aboutUs/alvaro.jpg";
-import rominaImg from "../aboutUs/romina.jpg";
-import juanImg from "../aboutUs/juan.png";
-import patricioImg from "../aboutUs/patricio.png";
+import { Col, Card } from "react-bootstrap";
 
-const colors = {
-  bgPrimary: "#111111",
-  bgSecondary: "#191B1B",
-  bgSoft: "#35393B",
-  bgHover: "#494D4E",
-  textMain: "#F5F5F5",
-  accent: "#FF2E2E",
-};
+const TeamMember = ({ name, img, text, extra, colors, compact }) => {
+  const cardWidth = compact ? "180px" : "250px";
+  const imgHeight = compact ? "140px" : "220px";
 
-const AboutUs = () => {
   return (
-    <div
-      style={{
-        backgroundColor: colors.bgPrimary,
-        minHeight: "100vh",
-        maxHeight: "100vh",
-        overflow: "hidden",
-        paddingTop: "2rem",
-        overflowY: "auto",
-      }}
+    <Col
+      md={compact ? 2 : 4}
+      className="d-flex justify-content-center mb-3"
+      style={{ minWidth: cardWidth }}
     >
-      {}
-      <Container className="text-center mb-3">
-        <img src={logo} alt="logo" width="110" className="mb-2" />
-
-        <h2 style={{ color: colors.textMain, marginBottom: "0.5rem" }}>
-          Nuestro Equipo
-        </h2>
-
-        <h6 style={{ color: colors.accent, opacity: 0.9 }}>
-          Wavv Music – Somos lo que te mantiene conectado.
-        </h6>
-      </Container>
-
-      {}
-      <Container
+      <Card
+        className="shadow-sm member-card"
         style={{
-          height: "60vh",
+          width: cardWidth,
+          backgroundColor: colors.bgSecondary,
+          color: colors.textMain,
+          borderRadius: "1rem",
+          border: `1px solid ${colors.bgSoft}`,
+          transition: "all 0.3s ease",
+          cursor: "pointer",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Row
-          className="g-3 justify-content-center"
+        <Card.Img
+          variant="top"
+          src={img}
+          alt={name}
           style={{
+            height: imgHeight,
+            objectFit: "cover",
+            borderTopLeftRadius: "1rem",
+            borderTopRightRadius: "1rem",
             width: "100%",
-            padding: "0 2rem",
           }}
-        >
-          <TeamMember name="Pablo" img={pabloImg} text="..." extra="..." colors={colors} compact />
-          <TeamMember name="Alvaro" img={alvaroImg} text="..." extra="..." colors={colors} compact />
-          <TeamMember name="Romina" img={rominaImg} text="..." extra="..." colors={colors} compact />
-          <TeamMember name="Juan" img={juanImg} text="..." extra="..." colors={colors} compact />
-          <TeamMember name="Patricio" img={patricioImg} text="..." extra="..." colors={colors} compact />
-        </Row>
-      </Container>
-    </div>
+        />
+
+        <Card.Body style={{ padding: "0.8rem", textAlign: "center" }}>
+          <Card.Title style={{ fontSize: "1rem" }} className="fw-bold">
+            {name}
+          </Card.Title>
+
+          {!compact && (
+            <>
+              <Card.Text style={{ opacity: 0.9, marginTop: "0.3rem" }}>
+                {text}
+              </Card.Text>
+              <Card.Text style={{ fontStyle: "italic", opacity: 0.8 }}>
+                {extra}
+              </Card.Text>
+            </>
+          )}
+        </Card.Body>
+      </Card>
+
+      <style>{`
+        .member-card:hover {
+          background-color: ${colors.bgHover};
+          transform: translateY(-4px) scale(1.02);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+      `}</style>
+    </Col>
   );
 };
 
-export default AboutUs;
+export default TeamMember;
