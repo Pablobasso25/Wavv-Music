@@ -95,6 +95,34 @@ const RegisterScreen = () => {
   };
 
   const infoForce = informationForce();
+
+  const showSuccessAlert = (emailEnviado = true) => {
+    const mensaje = emailEnviado
+      ? "¡Te hemos enviado un email de confirmación! Redirigiendo al login..."
+      : "⚠️ Registro exitoso, pero no se pudo enviar el email. Redirigiendo al login...";
+
+    Swal.fire({
+      title: "✔️¡Registro Exitoso!",
+      html: `
+        <div style="text-align: center;">
+          <p style="margin-bottom: 10px; font-size: 16px;">¡Bienvenido a <strong>Harmony Stream</strong>!</p>
+          <p style="margin-bottom: 0; font-size: 14px; color: ${
+            emailEnviado ? "#b0b0b0" : "#ffc107"
+          };">${mensaje}</p>
+        </div>
+      `,
+      icon: "success",
+      background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)",
+      color: "#ffffff",
+      iconColor: "#6f42c1",
+      confirmButtonText: "¡Empezar!",
+      confirmButtonColor: "#6f42c1",
+      timer: 4000,
+      timerProgressBar: true,
+    }).then(() => {
+      navigate("/login");
+    });
+  };
   const onSubmit = () => {};
 
   return (
@@ -341,10 +369,19 @@ const RegisterScreen = () => {
                 <Button
                   type="submit"
                   className="btn-primary-custom w-100 py-2"
-                  disabled={true}
-                  variant="secondary"
+                  disabled={send || forcePassword < 99}
+                  variant={forcePassword >= 99 ? "primary" : "secondary"}
                 >
-                  Registrarse
+                  {send ? (
+                    <>
+                      <span className="spinner-border spinner-border-sm me-2" />
+                      Registrando...
+                    </>
+                  ) : forcePassword < 99 ? (
+                    "🔒 Contraseña debe ser MUY FUERTE"
+                  ) : (
+                    "Registrarse"
+                  )}
                 </Button>
               </Form>
             </Card.Body>
