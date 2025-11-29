@@ -3,13 +3,19 @@ import { AuthProvider } from "./context/AuthContext";
 import { MusicPlayerProvider } from "./context/MusicPlayerContext";
 import { TokenProvider } from "./context/useToken";
 
+import AboutUs from "./components/AboutUs";
+
 const App = () => {
   return (
     <Router>
       <AuthProvider>
         <TokenProvider>
           <MusicPlayerProvider>
-            <Routes></Routes>
+
+            <Routes>
+              <Route path="/about-us" element={<AboutUs />} />
+            </Routes>
+
           </MusicPlayerProvider>
         </TokenProvider>
       </AuthProvider>
