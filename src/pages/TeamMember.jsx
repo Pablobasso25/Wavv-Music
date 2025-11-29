@@ -26,6 +26,7 @@ const AboutUs = () => {
         maxHeight: "100vh",
         overflow: "hidden",
         paddingTop: "2rem",
+        overflowY: "auto",
       }}
     >
       {}
