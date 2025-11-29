@@ -110,7 +110,61 @@ const RegisterScreen = () => {
               </small>
             </Card.Header>
             <Card.Body className="p-4">
+                {errorEmail && (
+                <Alert variant="danger" className="mb-4">
+                  {errorEmail}
+                </Alert>
+              )}
               <Form onSubmit={handleSubmit(onSubmit)}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Nombre de usuario *</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Tu nombre de usuario"
+                    className="bg-dark text-white border-secondary"
+                    isInvalid={errors.username}
+                    maxLength={30}
+                    {...register("username", {
+                      required: "El nombre de usuario es obligatorio",
+                      minLength: {
+                        value: 2,
+                        message: "Mínimo 2 caracteres",
+                      },
+                      maxLength: {
+                        value: 30,
+                        message: "Máximo 30 caracteres",
+                      },
+                      pattern: {
+                        value: /^[a-zA-Z0-9_]+$/,
+                        message: "Solo letras, números y guiones bajos",
+                      },
+                    })}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.username && errors.username.message}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+              
+                <Form.Group className="mb-3">
+                  <Form.Label>Email *</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="tu@email.com"
+                    className="bg-dark text-white border-secondary"
+                    isInvalid={errors.email}
+                    {...register("email", {
+                      required: "El email es obligatorio",
+                      pattern: {
+                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message: "Por favor ingresa un email válido",
+                      },
+                    })}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.email && errors.email.message}
+                  </Form.Control.Feedback>
+                </Form.Group>
                 <Button
                   type="submit"
                   className="btn-primary-custom w-100 py-2"
