@@ -266,8 +266,13 @@ const RegisterScreen = () => {
                     placeholder="tu@email.com"
                     className="bg-dark text-white border-secondary"
                     isInvalid={errors.email}
+                    maxLength={50}
                     {...register("email", {
                       required: "El email es obligatorio",
+                      maxLength: {
+                        value: 50,
+                        message: "El email no puede tener más de 50 caracteres",
+                      },
                       pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                         message: "Por favor ingresa un email válido",
@@ -297,6 +302,9 @@ const RegisterScreen = () => {
                         value: 20,
                         message:
                           "La contraseña no puede tener más de 20 caracteres",
+                      },
+                      onChange: (e) => {
+                        e.target.value = e.target.value.replace(/[<>\s]/g, "");
                       },
                       validate: {
                         fuerza: () =>
@@ -437,6 +445,9 @@ const RegisterScreen = () => {
                     maxLength={20}
                     {...register("confirmarPassword", {
                       required: "Confirma tu contraseña",
+                      onChange: (e) => {
+                        e.target.value = e.target.value.replace(/[<>\s]/g, "");
+                      },
                       validate: (value) =>
                         value === password || "Las contraseñas no coinciden",
                     })}

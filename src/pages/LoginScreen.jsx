@@ -19,7 +19,13 @@ const LoginScreen = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    let value = e.target.value;
+
+    if (e.target.name === "password") {
+      value = value.replace(/[<>\s]/g, "");
+    }
+
+    setFormData({ ...formData, [e.target.name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -55,6 +61,7 @@ const LoginScreen = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="bg-dark text-white border-secondary"
+                    maxLength={50}
                     required
                   />
                 </Form.Group>
@@ -67,6 +74,7 @@ const LoginScreen = () => {
                     value={formData.password}
                     onChange={handleChange}
                     className="bg-dark text-white border-secondary"
+                    maxLength={20}
                     required
                   />
                 </Form.Group>
