@@ -83,7 +83,7 @@ const NavBar = () => {
       }
     }, 300);
 
-    return () => crearTimeout(timer);
+    return () => clearTimeout(timer);
   }, [searchQuery, token, tokenLoading]);
 
   // Cerrar dropdown al hacer click afuera
@@ -205,7 +205,7 @@ const NavBar = () => {
           {/* BÚSQUEDA Y PERFIL */}
           <div className="d-flex flex-column flex-lg-row align-items-center gap-3">
             {/* BUSQUEDA - Solo en vista normal */}
-            {isAdminPage && (
+            {!isAdminPage && (
               <div className="search position-relative" ref={searchRef}>
                 <i className="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-white-50"></i>
                 {isSearching && (
@@ -222,7 +222,7 @@ const NavBar = () => {
                   className="ps-5 border-dark text-white custom-search-input"
                   placeholder="Buscar canciones..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.velue)}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   style={{
                     width: "250px",
                     backgroundColor: "#1a1a1a",
