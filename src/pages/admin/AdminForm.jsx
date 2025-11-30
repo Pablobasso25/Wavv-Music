@@ -25,7 +25,6 @@ const AdminForm = ({ type = "user", editData = null, onSave = null }) => {
     e.preventDefault();
     if (isUser) {
       const users = JSON.parse(localStorage.getItem("users")) || [];
-
       if (isEditing) {
         // Editar usuario existente
         const updatedUsers = users.map((user) =>
@@ -53,9 +52,58 @@ const AdminForm = ({ type = "user", editData = null, onSave = null }) => {
         setFormData({ username: "", email: "", password: "" });
       }
     } else {
-      console.log("Lógica de canciones pendiente...");
+      const songs = JSON.parse(localStorage.getItem("songs")) || [];
+      if (isEditing) {
+        // Editar canción existente
+        const updatedSongs = songs.map((song) =>
+          song.id === editData.id
+            ? {
+                ...song,
+                title: formData.title,
+                artist: formData.artist,
+                audio: formData.url,
+                cover:
+                  formData.cover ||
+                  "https://via.placeholder.com/300x300/5773ff/ffffff?text=Music",
+                plays: formData.plays || "0 Plays",
+                name: formData.title,
+              }
+            : song
+        );
+        localStorage.setItem("songs", JSON.stringify(updatedSongs));
+        window.dispatchEvent(new Event("storage"));
+        alert(`✅ Canción "${formData.title}" editada correctamente.`);
+        setFormData({ title: "", artist: "", url: "", cover: "", plays: "" });
+        if (onSave) onSave();
+      } else {
+        // Agregar nueva canción
+        const newSong = {
+          id: Date.now(),
+          title: formData.title,
+          artist: formData.artist,
+          album: "Single",
+          cover:
+            formData.cover ||
+            "https://via.placeholder.com/300x300/5773ff/ffffff?text=Music",
+          audio: formData.url,
+          genre: "Music",
+          plays: formData.plays || "0 Plays",
+          name: formData.title,
+        };
+
+        const updatedSongs = [...songs, newSong];
+        localStorage.setItem("songs", JSON.stringify(updatedSongs));
+
+        // También guarda como trending (la última canción agregada)
+        localStorage.setItem("trendingSong", JSON.stringify(newSong));
+
+        window.dispatchEvent(new Event("storage"));
+        alert(`✅ Canción "${formData.title}" agregada correctamente.`);
+        setFormData({ title: "", artist: "", url: "", cover: "", plays: "" });
+      }
     }
   };
+    
 
   return (
     <Card className="mb-4 bg-dark text-white border-secondary">
