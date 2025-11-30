@@ -37,7 +37,6 @@ const MusicPlayer = () => {
           src={currentSong.audio}
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleTimeUpdate}
-          autoPlay
         />
       )}
 

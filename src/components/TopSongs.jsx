@@ -130,7 +130,7 @@ const TopSongs = ({ album, isPlaylist = false, fromHome = false }) => {
                     title: track.name,
                     artist: album.artists?.[0]?.name || "Artista",
                     album: album.name,
-                    cover: album.image,
+                    cover: track.cover || album.image,
                     audio: track.preview_url,
                     genre: "Music",
                     name: track.name,
@@ -144,7 +144,7 @@ const TopSongs = ({ album, isPlaylist = false, fromHome = false }) => {
                   </span>
 
                   <img
-                    src={album.image}
+                    src={track.cover || album.image}
                     className="rounded me-2 me-md-3"
                     width="40"
                     height="40"

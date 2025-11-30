@@ -29,6 +29,7 @@ const PlaylistScreen = () => {
           duration_ms: song.duration_ms || 0,
           album: song.album,
           artist: song.artist,
+          cover: song.cover, 
         })),
       };
 
