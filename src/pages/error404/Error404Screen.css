@@ -31,3 +31,25 @@
 
     text-shadow: 0 0 20px rgba(147, 93, 255, 0.4);
 }
+
+.error-code-404 {
+    font-size: 10rem;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1;
+
+    background: linear-gradient(45deg, var(--wavv-blue-accent), var(--wavv-purple-accent));
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 0 0 20px rgba(147, 93, 255, 0.4);
+}
+
+.error-code-404 .eror-zero {
+    background: var(--wavv-blue-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
