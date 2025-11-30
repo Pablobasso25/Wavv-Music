@@ -6,6 +6,7 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import HomeScreen from "./pages/Home/HomeScreen";
 import NavBar from "./components/NavBar";
 import WelcomeScreen from "./pages/WelcomeScreen";
+import AdminScreen from "./pages/Admin/AdminScreen";
 const App = () => {
   const [welcome, setWelcome] = useState(true);
 
@@ -26,6 +27,14 @@ const App = () => {
             <ProtectedRoute>
               <NavBar />
               <HomeScreen />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute adminOnly>
+              <AdminScreen />
             </ProtectedRoute>
           }
         />
