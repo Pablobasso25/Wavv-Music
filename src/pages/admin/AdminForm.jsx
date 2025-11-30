@@ -5,13 +5,11 @@ const AdminForm = ({ type = "user", editData = null, onSave = null }) => {
   const isUser = type === "user";
   const isEditing = editData !== null;
 
- 
   const [formData, setFormData] = useState(
     isUser
       ? { username: "", email: "", password: "" }
       : { title: "", artist: "", url: "", cover: "", plays: "" }
   );
-
 
   useEffect(() => {
     if (editData) {
@@ -23,10 +21,40 @@ const AdminForm = ({ type = "user", editData = null, onSave = null }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Enviando formulario...", formData);
+    if (isUser) {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (isEditing) {
+        // Editar usuario existente
+        const updatedUsers = users.map((user) =>
+          user.id === editData.id ? { ...user, ...formData } : user
+        );
+        localStorage.setItem("users", JSON.stringify(updatedUsers));
+        window.dispatchEvent(new Event("storage"));
+        alert(`✅ Usuario "${formData.username}" editado correctamente.`);
+        setFormData({ username: "", email: "", password: "" });
+        if (onSave) onSave();
+      } else {
+        // Agregar nuevo usuario
+        const newUser = {
+          ...formData,
+          id: Date.now(),
+          role: "usuario",
+          favorites: [],
+          playlists: [],
+          createdAt: new Date().toISOString(),
+        };
+        const updatedUsers = [...users, newUser];
+        localStorage.setItem("users", JSON.stringify(updatedUsers));
+        window.dispatchEvent(new Event("storage"));
+        alert(`✅ Usuario "${formData.username}" agregado correctamente.`);
+        setFormData({ username: "", email: "", password: "" });
+      }
+    } else {
+      console.log("Lógica de canciones pendiente...");
+    }
   };
 
   return (
@@ -89,7 +117,7 @@ const AdminForm = ({ type = "user", editData = null, onSave = null }) => {
             </>
           ) : (
             <>
-          <Form.Group className="mb-2">
+              <Form.Group className="mb-2">
                 <Form.Label>Título</Form.Label>
                 <Form.Control
                   type="text"
