@@ -21,3 +21,17 @@ const LoginScreen = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    const success = login(formData.email, formData.password);
+
+    if (success) {
+      navigate("/");
+    } else {
+      setError("Credenciales incorrectas");
+      setLoading(false);
+    }
+  };
