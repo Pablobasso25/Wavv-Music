@@ -24,6 +24,23 @@ const Error404Screen = () => {
                         />
                     </Col>
                 </Row>
+                <Row className="mb-3">
+                    <Col>
+                        <h1 className="error-code-404">
+                            4<span className="error-zero">0</span>4
+                        </h1>
+                    </Col>
+                </Row>
+                <Row className="mb-3">
+                    <Col>
+                        <p className="error-message-404">
+                            ¡Oops! Parece que la **onda de sonido** se desvaneció.
+                        </p>
+                        <p className="error-description-404">
+                            No pudimos encontrar la página que estás buscando.
+                        </p>
+                    </Col>
+                </Row>
             </Container>
         </div>
     );
