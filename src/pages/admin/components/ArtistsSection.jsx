@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Row, Col, Card, Form, Button } from "react-bootstrap";
 import { useToken } from "../../../context/useToken";
 import { searchArtistAndAlbums } from "../../../helpers/musicApi";
@@ -10,13 +10,10 @@ const ArtistsSection = ({
   savedArtists,
   setSavedArtists,
 }) => {
-
   const { token } = useToken();
   const [artistName, setArtistName] = useState("");
 
-
   const handleSearchAndSaveArtist = async () => {
-
     if (!artistName.trim()) {
       alert("⚠️ Ingresá un nombre de artista válido.");
       return;
@@ -61,22 +58,20 @@ const ArtistsSection = ({
     setAlbums(updatedAlbums);
     localStorage.setItem("albums", JSON.stringify(updatedAlbums));
 
-
     const updatedArtists = savedArtists.filter(
       (artist) => artist.album.id !== albumId
     );
     setSavedArtists(updatedArtists);
     localStorage.setItem("artistas", JSON.stringify(updatedArtists));
 
-
     window.dispatchEvent(new Event("storage"));
 
     alert("✅ Álbum eliminado correctamente.");
   };
 
-
   return (
-    <>
+    <div className="mb-5">
+      <h2 className="text-white mb-4"> Gestión de Artistas</h2>
       <Row className="mb-4">
         <Col md={12}>
           <Card className="bg-dark text-white border-secondary">
@@ -102,7 +97,7 @@ const ArtistsSection = ({
                       onClick={handleSearchAndSaveArtist}
                       className="mb-3 w-100"
                     >
-                       Buscar y Guardar
+                      Buscar y Guardar
                     </Button>
                   </Col>
                 </Row>
@@ -117,7 +112,7 @@ const ArtistsSection = ({
           <AlbumTable albums={albums} onDelete={handleDeleteAlbum} />
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 
