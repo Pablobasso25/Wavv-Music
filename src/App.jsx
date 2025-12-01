@@ -8,6 +8,8 @@ import NavBar from "./components/NavBar";
 import WelcomeScreen from "./pages/WelcomeScreen";
 import PlaylistScreen from "./pages/PlaylistScreen";
 import LoginScreen from "./pages/LoginScreen";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const [welcome, setWelcome] = useState(true);
