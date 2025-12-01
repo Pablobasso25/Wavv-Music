@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
 import TeamMember from "./TeamMember";
+import RominaImg from "../assets/images/romina.jpg"
 
 const colors = {
     bgPrimary: "#111111",
@@ -52,7 +53,7 @@ const AboutUs = () => {
 
                     <TeamMember
                         name="Romina"
-                        img="/aboutUs/romina.jpg"
+                        img src={RominaImg}
                         text="texto de prueba"
                         colors={colors}
                         compact
