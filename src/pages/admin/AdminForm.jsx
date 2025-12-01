@@ -33,7 +33,7 @@ const AdminForm = ({ type = "user", editData = null, onSave = null }) => {
         );
         localStorage.setItem("users", JSON.stringify(updatedUsers));
         window.dispatchEvent(new Event("storage"));
-        alert(`✅ Usuario "${formData.username}" editado correctamente.`);
+        toast.success(`Usuario "${formData.username}" editado correctamente.`);
         setFormData({ username: "", email: "", password: "" });
         if (onSave) onSave();
       } else {
@@ -52,7 +52,7 @@ const AdminForm = ({ type = "user", editData = null, onSave = null }) => {
         localStorage.setItem("users", JSON.stringify(updatedUsers));
 
         window.dispatchEvent(new Event("storage"));
-        alert(`✅ Usuario "${formData.username}" agregado correctamente.`);
+        toast.success(`Usuario "${formData.username}" agregado correctamente.`);
         setFormData({ username: "", email: "", password: "" });
       }
     } else {
