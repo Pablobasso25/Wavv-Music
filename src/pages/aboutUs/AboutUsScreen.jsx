@@ -1,0 +1,89 @@
+import React from "react";
+import { Container, Row } from "react-bootstrap";
+import TeamMember from "./TeamMember";
+
+import logo from "../assets/images/logo1.png";
+import RominaImg from "../assets/images/romina.jpg";
+import AlvaroImg from "../assets/images/alvaro.jpg";
+import JuanImg from "../assets/images/juan.jpg"
+
+const colors = {
+    bgPrimary: "#111111",
+    bgSecondary: "#191B1B",
+    bgSoft: "#35393B",
+    bgHover: "#494D4E",
+    textMain: "#F5F5F5",
+    accent: "#FF2E2E",
+};
+
+const AboutUs = () => {
+    return (
+        <div
+            style={{
+                backgroundColor: colors.bgPrimary,
+                minHeight: "100vh",
+                paddingTop: "2rem",
+                overflow: "hidden",
+            }}
+        >
+            <Container className="text-center mb-3">
+                <img src={logo} alt="logo" width="110" className="mb-2" />
+                <h2 style={{ color: colors.textMain }}>Wavv Music - Somos lo que te conecta</h2>
+                <h6 style={{ color: colors.accent, opacity: 0.9 }}>
+                    Nuestro Equipo
+                </h6>
+            </Container>
+
+            <Container>
+                <Row
+                    className="justify-content-start"
+                    style={{
+                        display: "flex",
+                        gap: "2rem",
+                        flexWrap: "nowrap",
+                        overflowX: "auto",
+                        paddingBottom: "1rem",
+                        paddingLeft: "1rem",
+                    }}
+                >
+                    <TeamMember
+                        name="Pablo"
+                        img={AlvaroImg}
+                        text="Hola soy Pablo"
+                        colors={colors}
+                    />
+
+                    <TeamMember
+                        name="Alvaro"
+                        img={AlvaroImg}
+                        text="Hola soy Alvaro"
+                        colors={colors}
+                    />
+
+                    <TeamMember
+                        name="Romina"
+                        img={RominaImg}
+                        text="En otra vida fui psicóloga"
+                        colors={colors}
+                    />
+
+                    <TeamMember
+                        name="Juan"
+                        img={JuanImg}
+                        text="Hola soy Juan"
+                        colors={colors}
+                    />
+
+                    <TeamMember
+                        name="Patricio"
+                        img={AlvaroImg}
+                        text="Hola soy Patricio"
+                        colors={colors}
+                    />
+                </Row>
+            </Container>
+        </div>
+    );
+};
+
+export default AboutUs;
