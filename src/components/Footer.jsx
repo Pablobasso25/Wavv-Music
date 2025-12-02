@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Logo from "../assets/images/logo1.png";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -9,10 +10,17 @@ const Footer = () => {
     <footer style={{ background: "black", color: "white", padding: "40px" }}>
       <Container>
         <Row className="align-items-center text-center text-md-start">
-          <Col md={4}>
-            <h3 style={{ color: "#5773ff", fontWeight: "bold", margin: 0 }}>
-              Wavv Music
-            </h3>
+          <Col
+            md={4}
+            className="d-flex justify-content-center justify-content-md-start"
+          >
+            <img
+              src={Logo}
+              alt="Wavv Music"
+              height="50"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/")}
+            />
           </Col>
 
           <Col

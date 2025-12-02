@@ -155,7 +155,12 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar expand="lg" className="py-3" style={{ backgroundColor: "#000" }}>
+    <Navbar
+      expand="lg"
+      className="py-3"
+      fixed="top"
+      style={{ backgroundColor: "#000", zIndex: 1030 }}
+    >
       <Container>
         <Navbar.Brand
           onClick={() => navigate("/")}
