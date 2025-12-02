@@ -63,16 +63,16 @@ const AdminForm = ({ type = "user", editData = null, onSave = null }) => {
         const updatedSongs = songs.map((song) =>
           song.id === editData.id
             ? {
-                ...song,
-                title: formData.title,
-                artist: formData.artist,
-                audio: formData.url,
-                cover:
-                  formData.cover ||
-                  "https://via.placeholder.com/300x300/5773ff/ffffff?text=Music",
-                plays: formData.plays || "0 Plays",
-                name: formData.title,
-              }
+              ...song,
+              title: formData.title,
+              artist: formData.artist,
+              audio: formData.url,
+              cover:
+                formData.cover ||
+                "https://via.placeholder.com/300x300/5773ff/ffffff?text=Music",
+              plays: formData.plays || "0 Plays",
+              name: formData.title,
+            }
             : song
         );
 
@@ -100,7 +100,7 @@ const AdminForm = ({ type = "user", editData = null, onSave = null }) => {
           }
         }
         window.dispatchEvent(new Event("storage"));
-        alert(`✅ Canción "${formData.title}" editada correctamente.`);
+        toast.success(`Canción "${formData.title}" editada correctamente.`);
         setFormData({ title: "", artist: "", url: "", cover: "", plays: "" });
         if (onSave) onSave();
       } else {
@@ -126,7 +126,18 @@ const AdminForm = ({ type = "user", editData = null, onSave = null }) => {
         localStorage.setItem("trendingSong", JSON.stringify(newSong));
 
         window.dispatchEvent(new Event("storage"));
-        alert(`✅ Canción "${formData.title}" agregada correctamente.`);
+        toast.success(`✅ Canción "${formData.title}" agregada correctamente.`, {
+  position: "bottom-right",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light",
+  transition: Flip,
+});
+
         setFormData({ title: "", artist: "", url: "", cover: "", plays: "" });
       }
     }
@@ -141,8 +152,8 @@ const AdminForm = ({ type = "user", editData = null, onSave = null }) => {
               ? "Editar usuario"
               : "Agregar nuevo usuario"
             : isEditing
-            ? "Editar canción"
-            : "Agregar nueva canción"}
+              ? "Editar canción"
+              : "Agregar nueva canción"}
         </h4>
         <Form onSubmit={handleSubmit}>
           {isUser ? (
