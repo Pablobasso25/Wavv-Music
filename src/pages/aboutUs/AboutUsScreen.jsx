@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row } from "react-bootstrap";
 import TeamMember from "./TeamMember";
 
-import logo from "../assets/images/logo1.png";
+import wavv from "../assets/images/wavv.png";
 import RominaImg from "../assets/images/romina.jpg";
 import AlvaroImg from "../assets/images/alvaro.jpg";
 import JuanImg from "../assets/images/juan.jpg"
@@ -29,7 +29,7 @@ const AboutUs = () => {
             }}
         >
             <Container className="text-center mb-3">
-                <img src={logo} alt="logo" width="110" className="mb-2" />
+                <img src={wavv} alt="logo" width="110" className="mb-2" />
                 <h2 style={{ color: colors.textMain }}>Wavv Music - Somos lo que te conecta</h2>
                 <h6 style={{ color: colors.accent, opacity: 0.9 }}>
                     Nuestro Equipo

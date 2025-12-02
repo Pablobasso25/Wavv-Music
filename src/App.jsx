@@ -30,7 +30,7 @@ const App = () => {
           element={
             <ProtectedRoute>
               <NavBar />
-              <HomeScreen />
+              <AboutUs />
             </ProtectedRoute>
           }
         />
