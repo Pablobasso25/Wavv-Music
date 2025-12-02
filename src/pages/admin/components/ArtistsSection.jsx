@@ -19,34 +19,48 @@ const ArtistsSection = ({
       return;
     }
 
-    const result = await searchArtistAndAlbums(token, artistName);
-
-    if (!result || !result.artist || !result.album) {
-      alert("❌ Artista o álbum no encontrado.");
+    if (!token) {
+      alert(
+        "⚠️ No hay token de Spotify. Esperá unos segundos y volvé a intentar."
+      );
       return;
     }
 
-    const yaExiste = savedArtists.some((a) => a.id === result.artist.id);
-    if (yaExiste) {
-      alert("⚠️ Este artista ya fue guardado.");
-      return;
+    try {
+      const result = await searchArtistAndAlbums(token, artistName);
+
+      if (!result || !result.artist || !result.album) {
+        alert("❌ Artista o álbum no encontrado. Intentá con otro nombre.");
+        return;
+      }
+
+      const yaExiste = savedArtists.some((a) => a.id === result.artist.id);
+      if (yaExiste) {
+        alert("⚠️ Este artista ya fue guardado.");
+        return;
+      }
+
+      const artistaConAlbum = {
+        ...result.artist,
+        album: result.album,
+      };
+
+      const updatedArtists = [...savedArtists, artistaConAlbum];
+      setSavedArtists(updatedArtists);
+      localStorage.setItem("artistas", JSON.stringify(updatedArtists));
+
+      const updatedAlbums = [...albums, result.album];
+      setAlbums(updatedAlbums);
+      localStorage.setItem("albums", JSON.stringify(updatedAlbums));
+
+      window.dispatchEvent(new Event("storage"));
+
+      setArtistName("");
+      alert(`✅ Artista "${result.artist.name}" guardado correctamente.`);
+    } catch (error) {
+      console.error("❌ Error al buscar artista:", error);
+      alert(`❌ Error al buscar el artista: ${error.message}`);
     }
-
-    const artistaConAlbum = {
-      ...result.artist,
-      album: result.album,
-    };
-
-    const updatedArtists = [...savedArtists, artistaConAlbum];
-    setSavedArtists(updatedArtists);
-    localStorage.setItem("artistas", JSON.stringify(updatedArtists));
-
-    const updatedAlbums = [...albums, result.album];
-    setAlbums(updatedAlbums);
-    localStorage.setItem("albums", JSON.stringify(updatedAlbums));
-
-    setArtistName("");
-    alert(`✅ Artista "${result.artist.name}" guardado correctamente.`);
   };
 
   const handleDeleteAlbum = (albumId) => {
