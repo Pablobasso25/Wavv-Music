@@ -37,7 +37,7 @@ const Footer = () => {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/404");
+                navigate("/about-us");
               }}
               style={{
                 color: "white",

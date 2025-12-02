@@ -12,7 +12,7 @@ import AdminScreen from "./pages/admin/AdminScreen";
 import Footer from "./components/Footer";
 import Error404Screen from "./pages/error404/Error404Screen";
 
-import AboutUs from "./pages/aboutUs/AboutUsScreen"; 
+import AboutUs from "./pages/aboutUs/AboutUsScreen";
 
 const App = () => {
   const [welcome, setWelcome] = useState(true);
@@ -71,6 +71,16 @@ const App = () => {
               <PlaylistScreen />
               <Footer />
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/about-us"
+          element={
+            <>
+              <NavBar />
+              <AboutUs />
+              <Footer />
+            </>
           }
         />
         <Route path="*" element={<Error404Screen />} />
