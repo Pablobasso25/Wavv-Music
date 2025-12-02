@@ -320,7 +320,7 @@ const NavBar = () => {
                     Playlist
                   </NavLink>
                   <NavLink
-                    to="#"
+                    to="/about-us"
                     className="text-secondary text-uppercase fw-bold nav-link-custom"
                     style={{ textDecoration: "none" }}
                   >

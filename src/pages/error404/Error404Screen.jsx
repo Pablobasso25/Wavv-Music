@@ -1,11 +1,16 @@
 import React from "react";
-import { Container, Row, Col, Button, Image } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import LOGO_PATH from '../../assets/images/logo.png';
-import '../error404/Error404Screen.css';
-
+import { Container, Row, Col, Button, Image } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import LOGO_PATH from "../../assets/images/logo.png";
+import "../error404/Error404Screen.css";
 
 const Error404Screen = () => {
+  const navigate = useNavigate();
+
+  const handleGoHome = () => {
+    navigate("/");
+  };
+
   return (
     <div className="not-found-wrapper">
       <Container className="d-flex flex-column justify-content-center align-items-center min-vh-100 text-center py-5">
@@ -38,7 +43,11 @@ const Error404Screen = () => {
         </Row>
         <Row>
           <Col>
-            <Button variant="prymary" className="back-button-404">
+            <Button
+              variant="prymary"
+              className="back-button-404"
+              onClick={handleGoHome}
+            >
               Volver a la sintonia (inicio)
             </Button>
           </Col>
@@ -49,4 +58,3 @@ const Error404Screen = () => {
 };
 
 export default Error404Screen;
-
