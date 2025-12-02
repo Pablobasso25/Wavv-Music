@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Button, Image } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import LOGO_PATH from '../../assets/images/logo.png';
 
-const LOGO_PATH = '/';
 
 const Error404Screen = () => {
 
