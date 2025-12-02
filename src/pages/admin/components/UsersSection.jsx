@@ -26,7 +26,38 @@ const UsersSection = ({ users, setUsers }) => {
     setUsers(updatedUsers);
     localStorage.setItem("users", JSON.stringify(updatedUsers));
     window.dispatchEvent(new Event("storage"));
-    alert("✅ Usuario eliminado correctamente.");
+    const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: "btn btn-success",
+    cancelButton: "btn btn-danger"
+  },
+  buttonsStyling: false
+});
+swalWithBootstrapButtons.fire({
+  title: "Estas seguro?",
+  text: "No puedes volver atras!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonText: "Si, estoy seguro!",
+  cancelButtonText: "No",
+  reverseButtons: true
+}).then((result) => {
+  if (result.isConfirmed) {
+    swalWithBootstrapButtons.fire({
+      title: "Eliminado!",
+      text: "Tu cancion fue eliminada",
+      icon: "success"
+    });
+  } else if (
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    swalWithBootstrapButtons.fire({
+      title: "Cancelado",
+      text: "Tu cancion no se borro:)",
+      icon: "error"
+    });
+  }
+});
   };
 
   const handleSaveUser = () => {
