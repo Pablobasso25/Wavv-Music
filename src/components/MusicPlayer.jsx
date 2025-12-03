@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, ProgressBar } from "react-bootstrap";
-// import trendImg from "../assets/trend.png"; // TODO: Agregar imagen cuando exista
 import { useMusicPlayer } from "../context/MusicPlayerContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 

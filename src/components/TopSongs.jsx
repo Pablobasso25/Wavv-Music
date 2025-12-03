@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Container, Col } from "react-bootstrap";
-//import trendImg from "../assets/trend.png"; // Agregar imagen cuando exista
 import { useMusicPlayer } from "../context/MusicPlayerContext";
 import { toast, Slide } from "react-toastify";
 import { showConfirm } from "../helpers/alerts";

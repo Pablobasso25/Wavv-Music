@@ -168,7 +168,7 @@ const NavBar = () => {
       style={{ backgroundColor: "#000", zIndex: 1030 }}
     >
       <Container fluid className="position-relative">
-        {/* Logo */}
+       
         <Navbar.Brand
           onClick={() => navigate("/")}
           style={{ cursor: "pointer" }}
@@ -182,12 +182,12 @@ const NavBar = () => {
           />
         </Navbar.Brand>
 
-        {/* Botón hamburguesa */}
+       
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0" />
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto d-flex align-items-center gap-3">
-            {/* PLAYLIST */}
+          
             {!isAdminPage && (
               <NavLink
                 to="/playlist"
@@ -198,7 +198,7 @@ const NavBar = () => {
               </NavLink>
             )}
 
-            {/* NOSOTROS */}
+           
             {!isAdminPage && (
               <NavLink
                 to="/about-us"
@@ -209,7 +209,7 @@ const NavBar = () => {
               </NavLink>
             )}
 
-            {/* Home (solo admin) */}
+          
             {isAdminPage && (
               <NavLink
                 to="/"
@@ -221,7 +221,7 @@ const NavBar = () => {
               </NavLink>
             )}
 
-            {/* Buscador */}
+           
             {!isAdminPage && (
               <div
                 className="search position-relative"
@@ -351,7 +351,6 @@ const NavBar = () => {
               </div>
             )}
 
-            {/* Dropdown usuario */}
             <Dropdown align="end" drop="down" className="user-dropdown">
               <Dropdown.Toggle
                 as="div"
