@@ -282,42 +282,103 @@ body {
     }
 }
 
-/* Tablet: Layout optimizado - Sidebar y Player lado a lado */
+/* Tablet: Layout vertical con sidebar y player horizontales */
 @media (min-width: 768px) and (max-width: 1023px) {
     .home-layout {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
-        gap: 1rem;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 1.5rem;
         padding: 1rem;
     }
     
-    /* Contenido principal arriba ocupando ambas columnas */
+    /* Contenido principal arriba */
     .home-layout > *:nth-child(2) {
-        grid-column: 1 / -1;
+        grid-column: 1;
         grid-row: 1;
     }
     
-    /* Sidebar abajo a la izquierda */
+    /* Sidebar horizontal en medio */
     .home-layout > *:nth-child(1) {
         grid-column: 1;
         grid-row: 2;
     }
     
-    /* Player abajo a la derecha */
+    /* Player horizontal abajo */
     .home-layout > *:nth-child(3) {
-        grid-column: 2;
-        grid-row: 2;
+        grid-column: 1;
+        grid-row: 3;
     }
     
-    /* Sidebar más compacto en tablet */
+    /* Sidebar en modo horizontal */
     .artistas-sidebar {
-        max-height: 500px;
+        width: 100% !important;
+        max-height: 180px !important;
+        height: auto !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        padding: 1rem !important;
     }
     
-    /* Player ajustado */
+    .artistas-sidebar > div {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 1rem;
+    }
+    
+    .artistas-sidebar h6 {
+        display: none !important;
+    }
+    
+    .artistas-sidebar .artista-item {
+        flex-shrink: 0;
+        min-width: 140px !important;
+        width: 140px;
+    }
+    
+    /* Player en modo horizontal/apaisado */
     .home-player .music-player {
         width: 100%;
-        max-width: 100%;
+        max-width: 100% !important;
+        min-height: auto !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        gap: 1.5rem !important;
+        padding: 1.5rem !important;
+    }
+    
+    /* Imagen del álbum más pequeña y a la izquierda */
+    .home-player .song-info {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        text-align: left !important;
+        gap: 1.5rem;
+        flex-grow: 1;
+        margin-bottom: 0 !important;
+    }
+    
+    .home-player .song-info > img {
+        width: 150px !important;
+        height: 150px !important;
+        min-width: 150px;
+        flex-shrink: 0;
+        margin-bottom: 0 !important;
+    }
+    
+    .home-player .description {
+        flex-grow: 1;
+        margin-bottom: 0 !important;
+    }
+    
+    .home-player .progress-container {
+        min-width: 200px;
+    }
+    
+    .home-player .player-actions {
+        min-width: 180px;
+        flex-shrink: 0;
+        margin-top: 0 !important;
     }
     
     /* TopSongs altura optimizada para tablet */
