@@ -15,6 +15,7 @@ import { searchTracks } from "../helpers/musicApi";
 import { useMusicPlayer } from "../context/MusicPlayerContext";
 import Logo from "../assets/images/logo.jpg";
 import { toast, Slide } from "react-toastify";
+import { showConfirm } from "../helpers/alerts";
 
 const NavBar = () => {
   const { user, logout } = useAuth();
@@ -30,9 +31,16 @@ const NavBar = () => {
   const searchRef = useRef(null);
   const lastSearchRef = useRef("");
 
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
+  const handleLogout = async () => {
+    const result = await showConfirm(
+      "¿Estás seguro que deseas cerrar sesión?",
+      "Cerrar Sesión"
+    );
+
+    if (result.isConfirmed) {
+      logout();
+      navigate("/login");
+    }
   };
 
   const isAdminPage = location.pathname === "/admin";
@@ -187,6 +195,17 @@ const NavBar = () => {
                 style={{ textDecoration: "none" }}
               >
                 Playlist
+              </NavLink>
+            )}
+
+            {/* NOSOTROS */}
+            {!isAdminPage && (
+              <NavLink
+                to="/about-us"
+                className="text-secondary text-uppercase fw-bold nav-link-custom"
+                style={{ textDecoration: "none" }}
+              >
+                Nosotros
               </NavLink>
             )}
 
