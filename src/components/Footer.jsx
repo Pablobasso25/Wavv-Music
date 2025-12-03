@@ -7,7 +7,9 @@ const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <footer style={{ background: "black", color: "white", padding: "40px" }}>
+    <footer
+      style={{ background: "black", color: "white", padding: "20px 40px" }}
+    >
       <Container>
         <Row className="align-items-center text-center text-md-start">
           <Col
@@ -17,7 +19,7 @@ const Footer = () => {
             <img
               src={Logo}
               alt="Wavv Music"
-              height="50"
+              height="40"
               style={{ cursor: "pointer" }}
               onClick={() => navigate("/")}
             />
@@ -25,7 +27,7 @@ const Footer = () => {
 
           <Col
             md={4}
-            className="d-flex justify-content-center gap-5 mt-3 mt-md-0"
+            className="d-flex justify-content-center gap-4 mt-2 mt-md-0"
           >
             <a
               href="#"
@@ -59,8 +61,8 @@ const Footer = () => {
 
           <Col
             md={4}
-            className="d-flex justify-content-center justify-content-md-end gap-3 mt-3 mt-md-0"
-            style={{ fontSize: "28px" }}
+            className="d-flex justify-content-center justify-content-md-end gap-3 mt-2 mt-md-0"
+            style={{ fontSize: "24px" }}
           >
             <a
               href="https://github.com/Pablobasso25/Wavv-Music"

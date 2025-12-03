@@ -10,7 +10,6 @@ const ArtistasSidebar = ({ onAlbumSelect }) => {
   useEffect(() => {
     const loadArtists = () => {
       const stored = JSON.parse(localStorage.getItem("artistas")) || [];
-      console.log("🎤 Artistas guardados:", stored);
 
       const defaultArtist = {
         id: "default-artist",
@@ -41,7 +40,6 @@ const ArtistasSidebar = ({ onAlbumSelect }) => {
   }, []);
 
   const handleClick = (album) => {
-    console.log("📀 Álbum seleccionado:", album);
     localStorage.setItem("selectedAlbum", JSON.stringify(album));
     onAlbumSelect(album);
   };

@@ -9,7 +9,7 @@ body {
     background: linear-gradient(#050505, #464040);
     min-height: 100vh;
     color: white;
-    padding-top: 80px; /* Espacio para el navbar fixed */
+    padding-top: 65px; /* Espacio para el navbar fixed */
 }
 
 /* NavBar */

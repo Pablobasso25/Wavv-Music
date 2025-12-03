@@ -60,16 +60,13 @@ const NavBar = () => {
     }
 
     const timer = setTimeout(async () => {
-      console.log("🔍 Buscando:", searchQuery);
       lastSearchRef.current = searchQuery;
       setIsSearching(true);
       try {
         const results = await searchTracks(token, searchQuery, 8);
-        console.log("✅ Resultados:", results);
         setSearchResults(results);
         setShowDropdown(true);
       } catch (error) {
-        console.log("❌ Error al buscar:", error);
         setSearchResults([]);
         setShowDropdown(false);
       } finally {
@@ -157,7 +154,7 @@ const NavBar = () => {
   return (
     <Navbar
       expand="lg"
-      className="py-3"
+      className="py-2"
       fixed="top"
       style={{ backgroundColor: "#000", zIndex: 1030 }}
     >
@@ -170,7 +167,7 @@ const NavBar = () => {
           <img
             src={Logo}
             alt="Wavv Music Logo"
-            height="75"
+            height="50"
             className="d-inline-block align-top"
           />
         </Navbar.Brand>
@@ -324,21 +321,13 @@ const NavBar = () => {
                     <i className="bx bx-list-ul me-1"></i>
                     Playlist
                   </NavLink>
-                  <NavLink
-                    to="/about-us"
-                    className="text-secondary text-uppercase fw-bold nav-link-custom"
-                    style={{ textDecoration: "none" }}
-                  >
-                    NOSOTROS
-                  </NavLink>
-                  {user?.role === "admin" && (
+                  {user?.role !== "admin" && (
                     <NavLink
-                      to="/admin"
-                      className="text-warning text-uppercase fw-bold nav-link-custom"
+                      to="/about-us"
+                      className="text-secondary text-uppercase fw-bold nav-link-custom"
                       style={{ textDecoration: "none" }}
                     >
-                      <i className="bx bx-cog me-1"></i>
-                      ADMIN
+                      NOSOTROS
                     </NavLink>
                   )}
                 </>

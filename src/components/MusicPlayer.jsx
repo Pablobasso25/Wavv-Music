@@ -15,8 +15,6 @@ const MusicPlayer = () => {
     togglePlay,
     handleTimeUpdate,
     handleSeek,
-    skipNext,
-    skipPrevious,
   } = useMusicPlayer();
 
   const formatTime = (seconds) => {
@@ -114,9 +112,8 @@ const MusicPlayer = () => {
           ></i>
           <i
             className="bx bx-skip-previous fs-4 cursor-pointer hover-scale"
-            title="Previous"
-            style={{ cursor: "pointer" }}
-            onClick={skipPrevious}
+            title="Anterior (próximamente)"
+            style={{ cursor: "not-allowed", opacity: 0.4 }}
           ></i>
           <i
             className={`bx ${
@@ -128,9 +125,8 @@ const MusicPlayer = () => {
           ></i>
           <i
             className="bx bx-skip-next fs-4 cursor-pointer hover-scale"
-            title="Next"
-            style={{ cursor: "pointer" }}
-            onClick={skipNext}
+            title="Siguiente (próximamente)"
+            style={{ cursor: "not-allowed", opacity: 0.4 }}
           ></i>
           <i
             className="bx bx-shuffle fs-5 cursor-pointer hover-scale"
