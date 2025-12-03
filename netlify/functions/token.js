@@ -1,6 +1,3 @@
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
-
 export async function handler(event, context) {
   try {
     const clientId = process.env.VITE_SPOTIFY_CLIENT_ID;
